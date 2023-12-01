@@ -5,31 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e61be26a-352d-4b36-9fc1-60c45db17c3e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/java/exam01/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/java/exam01/Ex01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/java/exam01/Ex02.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/java/exam01/Ex03.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/java/exam01/Schedule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/java/exam01/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/java/exam02/Ex01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/java/exam02/Ex02.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/java/exam02/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/resources/META-INF/maven/archetype.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/resources/archetype-resources/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/resources/archetype-resources/src/main/java/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam02/src/main/resources/archetype-resources/src/test/java/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exam02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../exam02/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,18 +30,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;reply&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/박호범/2.서블릿 &amp; JSP/exam01&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/박호범/2.서블릿 & JSP/exam01",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean" />

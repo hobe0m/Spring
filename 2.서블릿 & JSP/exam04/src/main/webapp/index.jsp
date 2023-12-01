@@ -1,2 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<h1>안녕하세요!</h1>
+<form method="post" action="index_ps.jsp">
+    제목 : <input type="text" name="subject"><br>
+    내용 : <textarea name="content"></textarea><br>
+    <button type="submit">작성하기</button>
+</form>
