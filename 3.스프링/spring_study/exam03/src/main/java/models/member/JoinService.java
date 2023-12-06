@@ -1,11 +1,15 @@
 package models.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.validation.Validator;
 
 public class JoinService {
 
     @Autowired
+    @Qualifier("memberDao")
     private MemberDao memberDao;
     @Autowired
     private JoinValidator validator;

@@ -4,6 +4,7 @@ import commons.exceptions.BadRequestException;
 import commons.validators.RequiredValidator;
 import commons.validators.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public class JoinValidator implements Validator<Member>, RequiredValidator {
     // RequiredValidator : 필수 항목 검증
@@ -13,6 +14,7 @@ public class JoinValidator implements Validator<Member>, RequiredValidator {
 
 
     @Autowired
+    @Qualifier("memberDao")
     private MemberDao memberDao;
 
     public JoinValidator() {}
