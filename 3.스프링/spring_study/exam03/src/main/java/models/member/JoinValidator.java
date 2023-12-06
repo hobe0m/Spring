@@ -3,6 +3,7 @@ package models.member;
 import commons.exceptions.BadRequestException;
 import commons.validators.RequiredValidator;
 import commons.validators.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class JoinValidator implements Validator<Member>, RequiredValidator {
     // RequiredValidator : 필수 항목 검증
@@ -10,7 +11,11 @@ public class JoinValidator implements Validator<Member>, RequiredValidator {
     // Java에서는 상속보다는 하나의 구성요소로 확장하는 것을 더 선호한다.
     // 상속은 최대한 마지막에 실시(한 번밖에 하지 못하고, 꼭 필요한 것만 들어 있는 것이 아니기 때문에)
 
-    private MemberDao memberDao = new MemberDao();
+
+    @Autowired
+    private MemberDao memberDao;
+
+    public JoinValidator() {}
 
     public JoinValidator(MemberDao memberDao) {
         this.memberDao = memberDao;
