@@ -6,15 +6,14 @@ import models.member.ListService;
 import models.member.MemberDao;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import java.util.List;
 
 @Configuration
+@Import(AppCtx3.class)
 public class AppCtx2 {
-    @Bean
-    private MemberDao memberDao() {
-        return new MemberDao();
-    }
+
     @Bean
     public JoinValidator joinValidator() {
         return new JoinValidator();

@@ -12,16 +12,19 @@ public class AppCtx {
 
     @Bean
     public MemberDao memberDao() {
+
         return new MemberDao();
     }
 
     @Bean
     public JoinValidator joinValidator() {
+
         return new JoinValidator(memberDao());
     }
 
     @Bean
     public JoinService joinService() {
+
         return new JoinService(memberDao(), joinValidator());
     }
 
