@@ -1,6 +1,7 @@
 package main;
 
 import config.AppCtx2;
+import models.Message;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Ex02 {
@@ -9,6 +10,9 @@ public class Ex02 {
         AnnotationConfigApplicationContext ctx =
                 new AnnotationConfigApplicationContext(AppCtx2.class);
 
+        Message m1 = ctx.getBean(Message.class);
+        Message m2 = ctx.getBean(Message.class);
+        System.out.println(m1 == m2);
         ctx.close(); // 컨테이너 소멸 -> 이 전에 destroy()가 호출된다.
     }
 }
