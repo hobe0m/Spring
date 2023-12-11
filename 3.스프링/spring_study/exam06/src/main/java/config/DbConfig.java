@@ -1,6 +1,9 @@
 package config;
 
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.tomcat.jdbc.pool.DataSource;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,6 +11,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration // 설정 파일임을 알려주는 애노테이션
+@MapperScan("mapper")
 public class DbConfig {
 
     // 연결 객체를 만들 수 있는 데이터소스 객체 생성
@@ -35,6 +39,14 @@ public class DbConfig {
 
 
         return new JdbcTemplate(dataSource()); // dataSource를 주입받아서 사용한다.
+    }
+
+    @Bean
+    public SqlSessionFactory sqlSessionFactory() throws Exception {
+        SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
+        sessionFactoryBean.setDataSource(dataSource());
+
+        return sessionFactoryBean.getObject();
     }
 
     @Bean
