@@ -1,1 +1,67 @@
-<h1>회원가입</h1>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/common}">
+
+<main layout:fragment="content">
+    <h1 th:text="#{회원가입}"></h1>
+    <form method = "post" th:action="@{/member/join}">
+        <dl>
+            <dt th:text="#{아이디}"></dt>
+            <dd>
+                <input type="text" name="userId">
+            </dd>
+        </dl>
+
+        <dl>
+            <dt th:text="#{비밀번호}"></dt>
+            <dd>
+                <input type="password" name="userPw">
+            </dd>
+        </dl>
+        <dl>
+            <dt th:text="#{비밀번호_확인}"></dt>
+            <dd>
+                <input type="password" name="confirmPw">
+            </dd>
+        </dl>
+        <dl>
+            <dt th:text="#{회원명}"></dt>
+            <dd>
+                <input type="text" name="userNm">
+            </dd>
+        </dl>
+        <dl>
+            <dt th:text="#{이메일}"></dt>
+            <dd>
+                <input type="text" name="email">
+            </dd>
+        </dl>
+
+        <dl>
+            <dt th:text="#{취미}"></dt>
+            <dd>
+                <input type="checkbox" name="hobby" value="자바" id="hobby1">
+                <label for="hobby1">자바</label>
+
+                <input type="checkbox" name="hobby" value="오라클" id="hobby2">
+                <label for="hobby2">오라클</label>
+
+                <input type="checkbox" name="hobby" value="JSP" id="hobby3">
+                <label for="hobby4">JSP</label>
+
+                <input type="checkbox" name="hobby" value="스프링" id="hobby4">
+                <label for="hobby4">스프링</label>
+            </dd>
+        </dl>
+
+        <div>
+            <input type="checkbox" name="agree" value="true" id="agree">
+            <label for="agree" th:text="#{회원가입_약관에_동의합니다.}"></label>
+        </div>
+
+        <button type="submit" th:text="#{가입하기}"></button>
+    </form>
+</main>
+
+</html>
