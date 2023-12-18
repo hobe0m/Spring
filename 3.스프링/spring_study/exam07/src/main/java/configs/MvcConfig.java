@@ -1,13 +1,16 @@
 package configs;
 
 import commons.Utils;
+import controllers.member.JoinValidator;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.validation.Validator;
 import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import org.thymeleaf.spring6.SpringTemplateEngine;
@@ -16,10 +19,21 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
 @Configuration
 @EnableWebMvc
+@Import(DbConfig.class) // DbConfig 클래스의 설정을 추가
 public class MvcConfig implements WebMvcConfigurer {
 
     @Autowired
     private ApplicationContext applicationContext;
+
+    /*
+    @Autowired
+    private JoinValidator joinValidator;
+
+    @Override
+    public Validator getValidator() {
+        return joinValidator;
+    }
+    */
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
