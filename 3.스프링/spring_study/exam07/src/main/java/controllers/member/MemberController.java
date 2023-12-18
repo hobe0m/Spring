@@ -35,7 +35,7 @@ public class MemberController {
     @GetMapping("/join") // /member/join
     public String join(@ModelAttribute RequestJoin form, Model model) {
 
-        //model.addAttribute("requestJoin", new RequestJoin());
+        // model.addAttribute("requestJoin", new RequestJoin());
         model.addAttribute("pageTitle", "회원가입");
 
         return "member/join";
@@ -51,7 +51,6 @@ public class MemberController {
         joinValidator.validate(form, errors);
 
         if (errors.hasErrors()) { // 검증 실패시
-
             return "member/join";
         }
 
