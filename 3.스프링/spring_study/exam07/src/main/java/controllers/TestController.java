@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 
 // Cookie 연습
@@ -27,7 +28,8 @@ public class TestController {
     }
 
     @GetMapping("/cookie1/test2")
-    public String test2() {
+    public String test2(@CookieValue(name = "key2", defaultValue = "기본값") String key2) { // CookieValue를 통해서 key2를 주입
+        System.out.printf("key2=%s%n", key2);
 
         return "test";
     }
@@ -41,7 +43,9 @@ public class TestController {
     }
 
     @GetMapping("/session/test2")
-    public String test4(HttpSession session) {
+    public String test4(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
         String value = (String)session.getAttribute("key1");
         System.out.printf("key1=%s%n", value);
         return "test";

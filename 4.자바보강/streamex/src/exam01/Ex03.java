@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 public class Ex03 {
     public static void main(String[] args) {
-        int total = IntStream.rangeClosed(1,100).sum();
+        int total = IntStream.rangeClosed(1, 100).sum();
         System.out.println(total);
 
         List<String> words = Arrays.asList("aa", "bb", "cc");
