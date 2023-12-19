@@ -39,6 +39,7 @@ dependencies {
     implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
     implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
     implementation 'org.mindrot:jbcrypt:0.4'
+    implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
 
     implementation "org.springframework:spring-jdbc:${spring_version}"
     implementation 'org.apache.tomcat:tomcat-jdbc:10.1.16'
@@ -46,6 +47,8 @@ dependencies {
     testImplementation "org.springframework:spring-test:${spring_version}"
     testImplementation platform('org.junit:junit-bom:5.10.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testCompileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+    testCompileOnly 'jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.1'
 }
 
 test {

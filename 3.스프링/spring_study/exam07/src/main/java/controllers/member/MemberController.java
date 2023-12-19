@@ -1,11 +1,11 @@
 package controllers.member;
 
-/* 양식을 보여주는 페이지 */
-
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import models.member.JoinService;
+import models.member.LoginService;
 import models.member.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,10 @@ import java.util.List;
 public class MemberController {
 
     private final JoinValidator joinValidator;
-    private final JoinService joinService; // 회원가입 처리 마무린
+    private final JoinService joinService;
+    private final LoginValidator loginValidator;
+    private final LoginService loginService;
+
 
     @ModelAttribute("hobbies")
     public List<String> hobbies() {
@@ -35,7 +38,7 @@ public class MemberController {
     @GetMapping("/join") // /member/join
     public String join(@ModelAttribute RequestJoin form, Model model) {
 
-        // model.addAttribute("requestJoin", new RequestJoin());
+        //model.addAttribute("requestJoin", new RequestJoin());
         model.addAttribute("pageTitle", "회원가입");
 
         return "member/join";
@@ -44,8 +47,6 @@ public class MemberController {
 
     @PostMapping("/join") // /member/join
     public String joinPs(@Valid RequestJoin form, Errors errors, Model model) {
-        // 커맨드 객체 바로 뒤에 에러가 위치 해야 한다.
-        // 그래야 검증하고 바로 실패 메세지를 보낼 수 있다.
 
 
         joinValidator.validate(form, errors);
@@ -66,17 +67,31 @@ public class MemberController {
 
 
     @GetMapping("/login") // /member/login
-    public String login() {
+    public String login(@ModelAttribute RequestLogin form) {
 
         return "member/login";
     }
 
     @PostMapping("/login") // /member/login
-    public String loginPs(RequestLogin form) {
+    public String loginPs(@Valid RequestLogin form, Errors errors) {
 
-        System.out.println(form);
+        loginValidator.validate(form, errors);
 
-        return "member/login";
+        if (errors.hasErrors()) {
+            return "member/login";
+        }
+
+        // 로그인 처리
+        loginService.login(form);
+
+        return "redirect:/"; // 로그인 성공시 메인페이지 / 이동
+    }
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // 세션 비우기
+
+        return "redirect:/member/login"; // 로그인 페이지로 이동
+
     }
 
     @GetMapping("/list") // /member/list
@@ -99,10 +114,10 @@ public class MemberController {
 
         return "member/list";
     }
+
     /*
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         binder.setValidator(joinValidator);
-    }
-    */
+    }*/
 }

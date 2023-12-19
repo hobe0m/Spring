@@ -35,6 +35,26 @@ public class MvcConfig implements WebMvcConfigurer {
     }
     */
 
+    @Bean
+    public MemberOnlyInterceptor memberOnlyInterceptor() {
+        return new MemberOnlyInterceptor();
+    }
+
+    @Bean
+    public CommonInterceptor commonInterceptor() {
+
+        return new CommonInterceptor();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(memberOnlyInterceptor())
+                .addPathPatterns("/mypage/**");
+
+        registry.addInterceptor(commonInterceptor())
+                .addPathPatterns("/**");
+    }
+
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
@@ -52,6 +72,9 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/")
                 .setViewName("main/index");
+
+        registry.addViewController("/mypage/**")
+                .setViewName("mypage/index");
     }
 
     @Bean

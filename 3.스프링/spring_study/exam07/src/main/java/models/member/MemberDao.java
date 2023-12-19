@@ -1,13 +1,15 @@
 package models.member;
 
+import controllers.admin.MemberSearch;
 import lombok.RequiredArgsConstructor;
 import mapper.MemberMapper;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Repository
-@RequiredArgsConstructor // @Autowired 대신 사용, 대신 final(상수, 한번 만들면 바꿀 수 없다)을 붙여주어야 한다
+@RequiredArgsConstructor
 public class MemberDao {
 
     private final MemberMapper mapper;
@@ -22,10 +24,22 @@ public class MemberDao {
     public boolean exist(String userId) {
         int cnt = mapper.exist(userId);
 
-        return cnt > 0; // 1 이상이면 이미 등록된 아이디라는 의미, 중복된 아이디 체크
+        return cnt > 0; // 1이상 - 이미 등록된 아이디
     }
 
     public Member get(String userId) {
+
         return mapper.get(userId);
+    }
+
+    public List<Member> getList(MemberSearch search) {
+        LocalDate edate = search.getEdate();
+
+        if (edate != null) {
+            LocalDate newEdate = edate.plusDays(1);
+            search.setEdate(newEdate);
+        }
+
+        return mapper.getList(search);
     }
 }
