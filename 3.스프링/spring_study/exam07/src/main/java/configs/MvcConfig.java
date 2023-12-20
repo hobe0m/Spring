@@ -9,7 +9,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.validation.Validator;
 import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
@@ -19,12 +21,11 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
 @Configuration
 @EnableWebMvc
-@Import(DbConfig.class) // DbConfig 클래스의 설정을 추가
+@Import(DbConfig2.class)
 public class MvcConfig implements WebMvcConfigurer {
 
     @Autowired
     private ApplicationContext applicationContext;
-
     /*
     @Autowired
     private JoinValidator joinValidator;
@@ -42,7 +43,6 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Bean
     public CommonInterceptor commonInterceptor() {
-
         return new CommonInterceptor();
     }
 
@@ -66,6 +66,9 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**") // 모든 경로
                 .addResourceLocations("classpath:/static/");
+
+        registry.addResourceHandler("/upload/**")
+                .addResourceLocations("file:///c:/uploads/");
     }
 
     @Override
@@ -120,12 +123,22 @@ public class MvcConfig implements WebMvcConfigurer {
         ms.setDefaultEncoding("UTF-8");
         ms.setBasenames("messages.commons", "messages.validations");
 
-
         return ms;
     }
 
     @Bean
     public Utils utils() {
         return new Utils();
+    }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer configurer() {
+        PropertySourcesPlaceholderConfigurer conf = new PropertySourcesPlaceholderConfigurer();
+
+        conf.setLocations(
+                new ClassPathResource("application.properties")
+        );
+
+        return conf;
     }
 }

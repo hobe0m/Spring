@@ -7,27 +7,30 @@
         INSERT INTO MEMBER (USER_NO, USER_ID, USER_PW, USER_NM, EMAIL)
         VALUES (SEQ_MEMBER.nextval, #{userId}, #{userPw}, #{userNm}, #{email})
     </insert>
-    
+
     <select id="exist" resultType="int">
-        SELECT COUNT(*) FROM MEMBER WHERE USER_ID=#{user_Id}
+        SELECT COUNT(*) FROM MEMBER WHERE USER_ID=#{userId}
     </select>
-    
+
     <select id="get" resultType="models.member.Member">
         SELECT * FROM MEMBER WHERE USER_ID=#{userId}
     </select>
-    
+
     <select id="getList" resultType="models.member.Member">
-        <![CDATA[
         SELECT * FROM MEMBER
         <where>
             <if test="sdate != null">
+                <![CDATA[
                 REG_DT >= #{sdate}
+                ]]>
             </if>
             <if test="edate != null">
-                REG_DT <= #{edate}
+                <![CDATA[
+                AND REG_DT < #{edate}
+                ]]>
             </if>
         </where>
         ORDER BY REG_DT DESC
-        ]]>
+
     </select>
 </mapper>
