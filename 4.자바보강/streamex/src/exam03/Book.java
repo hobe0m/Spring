@@ -1,6 +1,6 @@
 package exam03;
 
-import java.util.Comparator;
+
 import java.util.Objects;
 
 public class Book implements Comparable<Book> {
@@ -8,16 +8,12 @@ public class Book implements Comparable<Book> {
     private String author;
     private String publisher;
 
-    public String book;
+    public Book() {}
 
     public Book(String title, String author, String publisher) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
-    }
-
-    public Book() {
-
     }
 
     @Override
@@ -49,5 +45,8 @@ public class Book implements Comparable<Book> {
 
     public String getTitle() {
         return title;
+    }
+    public String getAuthor() {
+        return author;
     }
 }
