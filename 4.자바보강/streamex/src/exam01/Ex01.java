@@ -8,7 +8,9 @@ public class Ex01 {
         String[] words = { "aaa", "aaa", "bb", "cc","abcd", "abcd"};
 
         Arrays.stream(words)
-                .distinct().filter(s -> s.length() >= 3).forEach(System.out::println);
+                .distinct()
+                .filter(s -> s.length() >= 3)
+                .forEach(System.out::println);
 
 
         List<String> words2 = Arrays.asList("aaa", "aaa", "bb", "cc","abcd", "abcd");
