@@ -1,17 +1,42 @@
 package org.choongang.restcontrollers;
 
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.choongang.entities.Member;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/member")
 public class ApiMemberController {
+    @PostMapping
+    public String join(@Valid @RequestBody  RequestJoin form, Errors errors) {
+        // @RequestBody는 Json 형식도 받을 수 있다.
+        if (errors.hasErrors()) {
+            List<String> messages = errors.getFieldErrors()
+                    .stream()
+                    .map(FieldError::getDefaultMessage)
+                    .toList();
+            log.info("에러 : {}", messages.toString());
+
+            return messages.stream().collect(Collectors.joining(","));
+        }
+
+        // log.info(form.toString());
+        return "OK";
+    }
+
+
+
+
     @GetMapping
     public Member info() {
         Member member = Member.builder()

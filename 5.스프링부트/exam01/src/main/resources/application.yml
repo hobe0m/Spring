@@ -3,8 +3,8 @@ server:
 
 spring:
   # 프로필 설정
-  # profiles:
-  #   active: dev
+  #profiles:
+  #  active: dev
 
   # 파일 업로드 설정
   servlet:
@@ -34,16 +34,15 @@ spring:
     cache: false
     prefix: file:src/main/resources/templates/
 
+
 # 파일 설정
 file:
   url: /upload/
   path: C:/uploads/
-  
+
 # 로거 설정
 logging:
   level:
     org:
       springframework:
         jdbc: trace
-        #org.springframework.jdbc를 trace방식으로
-        
