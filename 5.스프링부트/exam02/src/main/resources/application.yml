@@ -1,0 +1,72 @@
+server:
+  port: 3000
+  # 포트와 포트번호 사이에 한 칸 공백이 있어야 한다.
+
+spring:
+  # 데이터베이스 설정
+  datasource:
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: PROJECT
+    password: _aA123456
+    # 마찬가지로 콜론(:) 이 후 한 칸씩 띄어쓰기
+
+  # JPA 설정
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+        # DB에 맞게 판단해서 쿼리를 바꿔준다
+        # Oracle, MySQL과 같은 툴에 맞춰서 쿼리가 바뀐다
+
+        show_sql: true
+        # 실행 후 쿼리를 볼 수 있게 해주는 설정, 한 줄로 쯕 나온다
+
+        format_sql: true
+        # 쿼리를 보기 좋게(개행 등) 나타내준다
+
+        use_sql_comments: true
+    hibernate:
+     ddlAuto: create
+     # 테이블 혹은 제약조건들을 알아서 생성해준다
+
+  # datasource와 줄 맞춰서 작성 - 스프링 하위에 있기 때문에
+  # 라이브 리로드 설정
+  devtools:
+    livereload:
+      enabled: true
+
+  # datasource와 줄 맞춰서 작성 - 스프링 하위에 있기 때문에
+  # 타임리프 설정
+  thymeleaf:
+    chche: false
+    prefix: file:src/main/resources/templates/
+    # 파일 뒤에 /(슬래쉬)를 넣어주어야 파일을 찾을 수 있다.
+    
+  # 정적 자원 설정(CSS, JS, IMAGE)
+  web:
+    resources:
+      staticLocations: file:src/main/resources/static/
+      # 파일 뒤에 /(슬래쉬)를 넣어주어야 파일을 찾을 수 있다.
+  
+  # 파일 업로드 설정
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+      maxRequestSize: 60MB
+
+# 파일 경로 설정
+# 스프링의 하위가 아니기 때문에 들여쓰기를 하지 않아도 된다
+file:
+  url: /upload/
+  pate: c:/uploads/
+
+# 로거 설정
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+

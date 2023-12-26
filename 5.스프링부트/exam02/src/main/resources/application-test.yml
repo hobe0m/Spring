@@ -1,0 +1,37 @@
+spring:
+  # 데이터베이스 설정
+  datasource:
+    driverClassName: oracle.h2.Driver
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+    # 마찬가지로 콜론(:) 이 후 한 칸씩 띄어쓰기
+
+  # JPA 설정
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        # DB에 맞게 판단해서 쿼리를 바꿔준다
+        # Oracle, MySQL과 같은 툴에 맞춰서 쿼리가 바뀐다
+
+        show_sql: true
+        # 실행 후 쿼리를 볼 수 있게 해주는 설정, 한 줄로 쯕 나온다
+
+        format_sql: true
+        # 쿼리를 보기 좋게(개행 등) 나타내준다
+
+        use_sql_comments: true
+    hibernate:
+      ddlAuto: create
+      # 테이블 혹은 제약조건들을 알아서 생성해준다
+
+# 로거 설정
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+
