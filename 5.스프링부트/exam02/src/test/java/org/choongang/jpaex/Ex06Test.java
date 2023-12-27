@@ -56,7 +56,9 @@ public class Ex06Test {
     void test1() {
         BoardData data = boardDataRepository.findById(1L).orElse(null);
         Member member = data.getMember();
-        System.out.println(member);
+        String email = member.getEmail(); // 2차 쿼리 수행
+        System.out.println(email);
+        // System.out.println(member);
     }
 
     @Test
@@ -67,5 +69,18 @@ public class Ex06Test {
         items.forEach(System.out::println);
         // BoardData -> toString(), 참조 변수를 호출하면 toString()은 자동으로 붙는다!
 
+    }
+
+    @Test
+    void test3() {
+        List<BoardData> items = boardDataRepository.findAll();
+        for (BoardData item : items) {
+            Member member = item.getMember();
+            String email = member.getEmail(); // 2차 쿼리 실행
+        }
+    }
+    @Test
+    void test4() {
+        List<BoardData> items = boardDataRepository.getSubjects("목");
     }
 }

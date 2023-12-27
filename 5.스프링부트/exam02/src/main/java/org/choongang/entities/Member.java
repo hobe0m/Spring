@@ -84,12 +84,12 @@ public class Member extends Base{ // 클래스 이름이 테이블명의 기본 
     // LocalDate, LocalTime, LocalDateTime으로 대체된다.
 
     @ToString.Exclude // toString 메소드에서 배제되어 순환참조오류 해결
-    @OneToMany(mappedBy = "member", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "member", fetch=FetchType.LAZY)
     private List<BoardData> items = new ArrayList<>();
 
     // ManyToOne이 있어야 OneToMany가 있다.
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "addressNo")
     private Address address;
 }

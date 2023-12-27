@@ -20,11 +20,11 @@ public class BoardData extends Base {
     @Column(nullable = false)
     public String content;
 
-    @ManyToOne // 다대일 관계 명시, 알아서 조인된다.
+    @ManyToOne(fetch = FetchType.LAZY) // 다대일 관계 명시, 알아서 조인된다.
     @JoinColumn(name="userNo") //  @JoinColunm : 외래키로 설정되는 필드명을 직접 설정
     private Member member; // 다른 엔티티에 설정된 키본키가 외래키로 설정된다.
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<HashTag> tags = new ArrayList<>();
 
 
