@@ -2,21 +2,18 @@ package org.choongang.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 import org.choongang.commons.MemberType;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data // getter, setter, toString을 사용할 수 있으면 좋기 때문에 때문에 지정
       // 데이터형 클래스이기 때문에 정의
 @Entity // 엔티티로 인식하게 해주는 애노테이션
-@Table(name="USERS", indexes = @Index(name="idx_member_createdAt",
+@Table(/* name="USERS", */ indexes = @Index(name="idx_member_createdAt",
                                         columnList = "createdAt DESC"))
                                     // 엔티티의 이름을 기준으로 사용한다
                                     // 반환값 : INDEX
@@ -43,14 +40,14 @@ public class Member extends Base{ // 클래스 이름이 테이블명의 기본 
     @Column(length = 40, nullable = false) // NotNull 추가
     private String name;
 
-    @Column(length = 65, name="userPw", nullable = false) // 코드에서는 password를 사용해도 DB(테이블)에는 userPw로 설정된다.
+    @Column(length = 65, /* name="userPw", */ nullable = false) // 코드에서는 password를 사용해도 DB(테이블)에는 userPw로 설정된다.
     private String password; // varchar2
 
-    @Transient
+    // @Transient
     // @Lob
          // String일 때 @LOB을 사용하면 CLOB(Characetr Large Object) 형태로 나온다.
          // 내용이 많을 때 사용한다
-    private String introduction; // CLOB
+    // private String introduction; // CLOB
 
     @Enumerated (EnumType.STRING)
     @Column(length = 10)
@@ -85,4 +82,14 @@ public class Member extends Base{ // 클래스 이름이 테이블명의 기본 
     // @Temporal(TemporalType.TIMESTAMP) // 날짜 + 시간
     // public Date dt;
     // LocalDate, LocalTime, LocalDateTime으로 대체된다.
+
+    @ToString.Exclude // toString 메소드에서 배제되어 순환참조오류 해결
+    @OneToMany(mappedBy = "member", fetch=FetchType.EAGER)
+    private List<BoardData> items = new ArrayList<>();
+
+    // ManyToOne이 있어야 OneToMany가 있다.
+
+    @OneToOne
+    @JoinColumn(name = "addressNo")
+    private Address address;
 }

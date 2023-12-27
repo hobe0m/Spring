@@ -24,7 +24,7 @@ public class Ex01Test {
     @BeforeEach // 작업하기 전 초기 데이터를 넣을 때 많이 사용된다
     void init() {
         Member member = new Member();
-        member.setSeq(1L);
+        //member.setSeq(1L);
         member.setEmail("user-1@test.org");
         member.setName("사용자01");
         member.setPassword("12345678");

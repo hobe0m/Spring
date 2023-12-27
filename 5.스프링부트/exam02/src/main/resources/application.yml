@@ -28,6 +28,8 @@ spring:
         use_sql_comments: true
     hibernate:
      ddlAuto: create
+     # update : 기존 테이블을 drop하지 않는다
+     # create : 기존 테이블을 drop한다.
      # 테이블 혹은 제약조건들을 알아서 생성해준다
 
   # datasource와 줄 맞춰서 작성 - 스프링 하위에 있기 때문에
