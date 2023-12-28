@@ -3,7 +3,6 @@ package exam04;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,11 +21,11 @@ public class Ex01 {
 
              oos.writeObject(data);
 
-             /*
+            /*
              oos.writeObject(b1);
              oos.writeObject(b2);
              oos.writeObject("안녕하세요");
-             */
+            */
 
         } catch (IOException e) {
             e.printStackTrace();
