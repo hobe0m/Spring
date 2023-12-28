@@ -25,6 +25,7 @@ public class BoardData extends Base {
     private Member member; // 다른 엔티티에 설정된 키본키가 외래키로 설정된다.
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "board_data_tag")
     private List<HashTag> tags = new ArrayList<>();
 
 

@@ -1,5 +1,7 @@
 package org.choongang.jpaex;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.choongang.entities.BoardData;
 import org.choongang.entities.HashTag;
 import org.choongang.repositories.BoardDataRepository;
@@ -25,6 +27,9 @@ public class Ex08Test {
     @Autowired
     private HashTagRepository hashTagRepository;
 
+    @PersistenceContext
+    private EntityManager em;
+
     @BeforeEach
     void init() {
         List<HashTag> tags = new ArrayList<>();
@@ -46,6 +51,7 @@ public class Ex08Test {
         }
 
         boardDataRepository.saveAllAndFlush(items);
+        em.clear(); // 영속성 비우기
     }
     @Test
     void test1() {
