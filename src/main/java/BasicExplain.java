@@ -32,4 +32,49 @@ public class BasicExplain {
     // setting.gradle : 추후에 학습
 
     // 실행하면, tomcat이라는 내장 서버가 돌아간다.
+
+    // 라이브러리 살펴보기
+    //  - External Libraries : 실제로 가져온 라이브러리들, build.gradle에 나와 있는 라이브러리보다 훨씬 많다.
+    //   - starter-web을 가져오면, 필요로 하는 라이브러리들을 gradle 혹은 maven이 알아서 가져와준다.
+    //   - 이렇게 하나의 라이브러리를 사용할 때 필수적으로 요구되는 라이브러리들의 관계를 의존 관계라고 한다.
+
+    // log
+    // 현업에서는 System.out.println()을 사용하지 않고, log(logging)를 사용한다.
+    // 로깅 프레임 워크 : slf4j(인터페이스), logback(구현체)
+
+    // 로깅은 운영 중인 웹 애플리케이션에 문제가 발생했을 경우, 문제의 원인을 파악하기 위해 문제 당시의 상화과 정보를 남겨두는 것
+    //  - 예를 들어 Exception이 발생했거나, 중요 기능이 실행되는 부분에서 적절한 로그를 남겨야 한다.
+    
+    //  - 로그 레벨
+    //   - trace(debug보다 세분화 된 정보)
+    //   - debug(디버깅 하는데 유용한 세분화 된 정보) 
+    //   - info(진행 상황 같은 일반 정보)
+    //   - warn(오류는 아니지만 오류의 원인이 될 수 있는 경고성 정보)
+    //   - error(요청 처리 중 문제 발생)
+
+    // 출력보다 로깅을 하는 것이 구조화 된 로깅을 할 수 있고, 디버깅 및 문제 해결 과정에서 필요한 정보를 효과적으로 관리할 수 있어 사용한다.
+
+    // 테스트를 할 때, junit이라는 라이브러리를 사용(핵심)
+    // spring-test : 스프링과 통합해서 테스트를 할 수 있게 해주는 라이브러리
+
+    // 정리
+    // 핵심 라이브러리
+    // 스프링 부트 라이브러리
+    // spring-boot-starter-web
+    //  - spring-boot-starter-tomcat(톰캣, 웹서버)
+    //  - spring-webmvc : 스프링 웹 MVC
+
+    // spring-boot-starter-thymeleaf : 타임리프 템플릿 엔진(View)
+    //  - spring-boot-starter(공통) : 스프링 부트 + 스프링 코어 + 로깅을 다 당겨온다.
+    //   - spring-boot
+    //    - spring-core
+    //   - spring-boot-starter-logging
+    //    - logback, slf4j
+
+    // 테스트 라이브러리
+    // spring-boot-starter-test
+    //  - junit : 테스트 프레임워크
+    //  - mokito : 목 라이브러리(참고)
+    //  - assertj : 테스트 코드를 좀 더 편하게 작성하게 도와주는 라이브러리(참고)
+    //  - spring-test : 스프링 통합 테스트 지원, 스프링이랑 통합해서 할 수 있게끔 해준다.
 }
