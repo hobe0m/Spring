@@ -3,6 +3,15 @@ package Hello.hello.spring.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+// MVC : Model, Controller, View
+//  - 이전에는 View에서 다 해결하는 Model1 방식을 사용했지만, 지금은 나눠서 관리하는 방식을 사용한다.
+
+//  - View는 화면만, Controller는 비즈니스 로직이나 서버 뒷단과 관련된 것 관리
+//   - 이 후, View에서 필요로 하는 것들을 Model에다가 담아서 넘긴다.
+
+//  - 요즘 View와 Controller를 분리하는 것은 기본이다.
 
 // 컨트롤러는 해당 클래스가 컨트롤러라는 것을 알리기 위해 항상 컨트롤러 어노테이선을 붙여줘야 한다.
 @Controller 
@@ -15,6 +24,15 @@ public class HelloCotroller {
         // templates에서 hello라는 html파일을 찾고 그 화면을 실행시킨다.
         // 이 때, thymeleaf 템플릿 엔진 처리(사용할 경우)도 같이 진행된다.
         return "hello";
+    }
+
+    @GetMapping("hello-mvc")
+    // @RequestParam을 통해 외부에서 파라미터(String 타입)를 받는다.
+    // @RequestParam의 required는 true(기본값)면 필수, false면 필수가 아니다.
+    // url에 name = spring!을 추가했으므로, name이 spring으로 바뀌어 모델에 담긴다.
+    public String helloMvc(@RequestParam(value = "name", required = false) String name, Model model) {
+        model.addAttribute("name", name);
+        return "hello-template";
     }
 
     // 즉, 컨트롤러에서 리턴 값으로 문자를 반환하면 뷰 리졸버(View Resolver)가 화면을 찾아서 처리한다.
