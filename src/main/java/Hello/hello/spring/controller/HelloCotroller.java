@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 // MVC : Model, Controller, View
 //  - 이전에는 View에서 다 해결하는 Model1 방식을 사용했지만, 지금은 나눠서 관리하는 방식을 사용한다.
@@ -73,4 +74,54 @@ public class HelloCotroller {
 
     // 간편한 배포, 독립적 실행, 유연한 환경 구성이라는 장점이 있다.
     // gradlew.bat clean : 빌드 폴더 삭제
+
+
+    // API(문자 데이터를 바로 전송)
+    // View를 거칠 필요 없이 문자가 그대로 전송된다.
+    // @ResponseBody : body부분에 바로 전송
+    @GetMapping("hello-string")
+    @ResponseBody // HTTP의 Body 부분에 데이터를 직접 넣어주겠다라는 뜻
+    public String helloString(@RequestParam("name") String name) {
+        return "hello " + name; // name에 spring을 넣으면 hello spring이라도 뜬다.
+    }
+
+    // 위와 같은 방식(문자만 보내기)은 쓸 일이 별로 없다.
+
+    // ctrl + shift + enter : 문장을 종결시켜준다.
+    // API
+    // 데이터를 Body부분의 전달
+    // 이렇게 요청했을 때 JSON 형식(Key = value)으로 소스가 나타난다.
+    // 요즘에는 거의 JSON 방식만 사용한다.
+    @GetMapping("hello-api")
+    @ResponseBody
+    // 객체가 오면 jSON 형식으로 만들어서 넘긴다(기본).
+    // ResponseBody가 없다면 ViewResolver로 넘기지만 있다면 HttpMessageConverter가 동작한다.
+    // 이 때, 기본 문자일 경우 StringHttpMessageConverter가 객체일 경우 MappingJackson2HttpMessageConverter가 동작한다.
+    //  - Jackson2 : Http를 JSON으로 바꿔주는 라이브러리, 따라서 MappingJackson2HttpMessageConverter가 JSONHttpMessageConverter이다.
+    //  - 따라서 {name : spring}의 형태로 body에 들어간다.
+    // byte 처리 등등 기타 여러 HttpMessageConverter가 기본으로 등록되어 있다.
+
+    // 참고
+    // 클라이언트의 HTTP Accept 헤더(어떠한 포맷으로 받고 싶다고 명시 따라서 명시된 컨버터가 동작, 아무것도 없으면 다 받을 수 있다는 뜻)와 서버의 컨트롤러 반환 타입 정보 둘을 조합해서 HttpMessageConverter가 선택된다.
+    // 더 자세한 내용은 스프링 MVC 강의에서 설명한다.
+    public Hello helloApi(@RequestParam("name") String name) {
+        Hello hello = new Hello();
+        hello.setName(name);
+        return hello;
+    }
+
+    static class Hello {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+    // 정적 컨텐츠 : 파일을 그대로 내려준다.
+    // MVC와 템플릿 엔진 : 템플릿 엔진을 Model-View-Controller 방식으로 쪼개 View를 템플릿 엔진으로 HTML을 렌더링한 후 클라이언트에게 전달
+    // API : 보통은 객체를 반환하는 것, HttpMessageConverter를 통해 JSON으로 바꿔서 반환, View가 없이 HttpResponseBody에 넣어서 전달
 }
