@@ -104,6 +104,8 @@ public class HelloCotroller {
     // 참고
     // 클라이언트의 HTTP Accept 헤더(어떠한 포맷으로 받고 싶다고 명시 따라서 명시된 컨버터가 동작, 아무것도 없으면 다 받을 수 있다는 뜻)와 서버의 컨트롤러 반환 타입 정보 둘을 조합해서 HttpMessageConverter가 선택된다.
     // 더 자세한 내용은 스프링 MVC 강의에서 설명한다.
+
+    // RESTful 웹 서비스의 예시
     public Hello helloApi(@RequestParam("name") String name) {
         Hello hello = new Hello();
         hello.setName(name);
