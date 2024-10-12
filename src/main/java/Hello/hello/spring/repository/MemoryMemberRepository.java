@@ -60,6 +60,10 @@ public class MemoryMemberRepository implements MemberRepository {
         return new ArrayList<>(store.values());
     }
 
+    public void clearStore() {
+        store.clear();
+    }
+
     // map 형태를 List 형태로 출력
     // 새로운 리스트를 생성한 뒤 store의 전체 데이터인 values()를 넣어 반환한다.
     // 조회 시 순서 유지, 순회 및 반복, 유연한 연산, 인덱스 기반 접근 등의 장점이 있어 List 형태로 출력한다.
