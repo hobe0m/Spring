@@ -22,7 +22,9 @@ public class HelloCotroller {
     public String hello(Model model) {
         // data라는 키, hello!!라는 값을 model에 넣어준다.
         model.addAttribute("data", "spring!!");
-        // templates에서 hello라는 html파일을 찾고 그 화면을 실행시킨다.
+
+        // return
+        // templates에서 hello라는 html파일을 찾고 그 화면을 실행(렌더링)시킨다.
         // 이 때, thymeleaf 템플릿 엔진 처리(사용할 경우)도 같이 진행된다.
         return "hello";
     }
@@ -112,6 +114,8 @@ public class HelloCotroller {
         return hello;
     }
 
+    // static 클래스로 만들면 클래스 안에서 클래스를 사용할 수 있다.
+    // helloController.Hello로 사용 가능
     static class Hello {
         private String name;
 
@@ -126,4 +130,8 @@ public class HelloCotroller {
     // 정적 컨텐츠 : 파일을 그대로 내려준다.
     // MVC와 템플릿 엔진 : 템플릿 엔진을 Model-View-Controller 방식으로 쪼개 View를 템플릿 엔진으로 HTML을 렌더링한 후 클라이언트에게 전달
     // API : 보통은 객체를 반환하는 것, HttpMessageConverter를 통해 JSON으로 바꿔서 반환, View가 없이 HttpResponseBody에 넣어서 전달
+
+    // 참고
+    // 클라이언트의 HTTP Accept 헤더와 서버의 컨트롤러 반환 타입 정보 둘을 조합해서 HttpMessageConverter가 선택된다.
+    // 지금은 보통 JSON만 쓴다고 생각하면 되고 이러한 내용은 추후에 자세히 다룬다.
 }
