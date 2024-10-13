@@ -7,6 +7,7 @@ import Hello.hello.spring.repository.MemoryMemberRepository;
 import java.util.List;
 import java.util.Optional;
 
+// Ctrl + shift + T : 테스트 클래스 생성
 public class MemberService {
 
     // 서비스 클래스는 비즈니스에 가까운 용어를 사용해야 한다.
@@ -14,7 +15,11 @@ public class MemberService {
     // 반면에 리포지토리는 좀 더 개발자 친화적인 용어를 사용한다.
 
     // 서비스는 리포지토리와 연동되어야 하므로 리포지토리 사용
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     /**
      * 회원 가입
