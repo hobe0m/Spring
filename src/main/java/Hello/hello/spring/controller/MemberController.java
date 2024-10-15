@@ -15,7 +15,21 @@ public class MemberController {
     // 이 외에도 부가적인 좋은 기능이 많지만 그건 뒤에서 설명한다.
     // private final MemberService memberService = new MemberService();
 
-    private final MemberService memberService;
+ private final MemberService memberService;
+
+    // 필드 주입 방법(권장 X)
+    // @Autowired private MemberService memberService;
+    // 스프링이 뜰 때만 넣어주고 중간에 바꿀 수 있는 방법이 없기 때문이다.
+
+    // setter 주입 방법(권장 X)
+    // private MemberService memberService;
+
+    // public으로 생성되어 노출이 되므로 중간에 바뀔 우려가 있다.
+    // 생성하는 시점에만 설정할 수 있게 하는 것이 좋은데, 누구든 언제나 변경할 수 있으므로 권장되지 않는다.
+    //  @Autowired
+    //  public void setMemberService(MemberService memberService) {
+    //      this.memberService = memberService;
+    //  }
 
     // 아까 Controller에 @Controller 어노테이션을 넣으면 컨테이너가 뜰 때 내부에 Controller 객체가 생긴다(생성자 호출)고 했었는데, @Autowired로 매개변수 MemberService를 넣어주면 생성 시 MemberService를 연결해서 생성해준다.
     // 연결 대상 둘 다 어노테이션이 붙어 있어야 스프링 컨테이너가 관리하는 빈이 될 수 있다.

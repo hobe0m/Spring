@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 // Ctrl + shift + T : 테스트 클래스 생성
-@Service
+
 public class MemberService {
 
     // 서비스 클래스는 비즈니스에 가까운 용어를 사용해야 한다.
@@ -21,7 +21,7 @@ public class MemberService {
 
     // 여기도 마찬가지로, MemberService를 생성할 때 MemoryMemberRepository를 넣어준다.
     // MemberRepository가 아닌 이유는, MemoryMemberRepository가 구현체이기 때문이다.
-    @Autowired
+
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
