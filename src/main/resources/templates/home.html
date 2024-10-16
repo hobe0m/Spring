@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- 홈 화면 생성 -->
+<!-- 이전에 static에 index.html을 생성해서 /(루트)경로로 들어가면 index.html이 뜨게끔 했었는데 컨트롤러에서 /(루트) 경로를 연결해놨다면 컨트롤러가 우선이다. -->
+<!-- 매핑된 게 있는지 먼저 확인하고, static(정적 리소스)을 찾기 때문이다. -->
+<body>
+
+<div class="container">
+    <div>
+        <h1>Hello Spring</h1>
+        <p>회원 기능</p>
+        <p>
+            <a href="/members/new">회원 가입</a>
+            <a href="/members">회원 목록</a>
+        </p>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
