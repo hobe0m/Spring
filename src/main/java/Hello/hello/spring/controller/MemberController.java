@@ -4,8 +4,11 @@ import Hello.hello.spring.domain.Member;
 import Hello.hello.spring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 // Spring이 뜰 때, Spring Container라는 통이 생기는데 @Controller 어노테이션이 있으면 컨테이너에 MemberController 객체를 넣어두고 스프링이 관리한다.
 // 이를 스프링 컨테이너에서 스프링 빈이 관리된다고 한다.
@@ -70,5 +73,13 @@ public class MemberController {
         memberService.join(member);
 
         return "redirect:/";
+    }
+
+    // 메모리를 사용해서 저장하기 때문에, 서버를 내리면 데이터가 다 내려간다.
+    @GetMapping("/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
     }
 }
