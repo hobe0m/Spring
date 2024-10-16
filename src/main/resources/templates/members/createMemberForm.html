@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div class="container">
+
+    <!-- form은 값을 입력할 수 있는 태그 -->
+    <!-- input에 값을 넣고, 버튼을 누르면 action의 url으로 post 방식의 요청이 전달된다. -->
+    <form action="/members/new" method="post"> <div class="form-group">
+        <label for="name">이름</label>
+        <!-- text를 입력할 수 있는 칸 생성-->
+        <!-- input : 입력 가능 -->
+        <!-- type : 입력 가능한 데이터의 형태 -->
+        <!-- name 값이 중요, 서버로 넘어올 때 Key값이 된다. -->
+        <!-- placeholder : 사용자가 입력하기 전, 해당 필드에 어떤 내용이 들어가야 하는지 간단히 설명하는 텍스트 -->
+        <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+    </div>
+        <button type="submit">등록</button>
+    </form>
+
+</div> <!-- /container -->
+</body>
+</html>

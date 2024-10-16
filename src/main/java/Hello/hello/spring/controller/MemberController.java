@@ -1,8 +1,11 @@
 package Hello.hello.spring.controller;
 
+import Hello.hello.spring.domain.Member;
 import Hello.hello.spring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 // Spring이 뜰 때, Spring Container라는 통이 생기는데 @Controller 어노테이션이 있으면 컨테이너에 MemberController 객체를 넣어두고 스프링이 관리한다.
 // 이를 스프링 컨테이너에서 스프링 빈이 관리된다고 한다.
@@ -38,5 +41,34 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
+    }
+
+    // @GetMapping은 URL을 직접 치고 들어온다고 생각하면 된다.
+    // 예를 들어 localhost:8080/members/new 이런 식이다.
+    // URL은 같지만, GET이냐 POST냐에 따라 매핑을 달리 할 수 있다.
+    @GetMapping("/members/new")
+    public String createForm() {
+
+        // @GetMapping이 return을 하면 templates 폴더에서 찾는다.
+        // 따라서 templates에 있는 파일명을 적어주면 되고, 설정에서 경로를 바꿀 수도 있다.
+        // localhost:8080/members/new를 검색해서 들어오면 templates/members/createForm을 보여준다.
+        //  - viewResolve가 템플릿을 찾아서 띄워주고, thymeleaf가 동적 데이터들을 렌더링해서 보여준다.
+        return "members/createMemberForm";
+    }
+
+    // 사용자가 데이터를 입력해 넘어온 POST 요청이 @PostMapping("/members/new")로 들어온다.
+    @PostMapping("/members/new")
+    // MemberForm의 name 필드에 html에서 input 태그에 지정한 name이 들어간다.
+    // input 박스에 text를 넣고 submit 버튼을 누르면 @PostMapping("/members/new")으로 넘어와 메서드가 실행되는데 이 때, 스프링이 name을 보고 setName을 사용해 MemberForm에 넘겨준다.
+    public String create(MemberForm form) {
+        Member member = new Member();
+        member.setName(form.getName());
+
+        // 출력을 통해 name 값을 확인할 수 있다.
+        // System.out.println("member = " + member.getName());
+
+        memberService.join(member);
+
+        return "redirect:/";
     }
 }
