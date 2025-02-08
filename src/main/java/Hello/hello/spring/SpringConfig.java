@@ -1,10 +1,13 @@
 package Hello.hello.spring;
 
+import Hello.hello.spring.repository.JdbcMemberRepository;
 import Hello.hello.spring.repository.MemberRepository;
-import Hello.hello.spring.repository.MemoryMemberRepository;
 import Hello.hello.spring.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
 
 // 자바 코드로 컴포넌트 등록하는 방법
 // SpringConfig 파일을 만들고, @Configuration 어노테이션을 붙여준다.
@@ -15,6 +18,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringConfig {
 
+    private DataSource dataSource;
+
+    @Autowired
+    public SpringConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     // 이 때 MemberService의 매개변수는 빈으로 등록된 Repository를 사용해야 하므로, memberRepository()를 매개변수에 넣어준다.
     @Bean
     public MemberService memberService() {
@@ -23,7 +33,8 @@ public class SpringConfig {
 
     @Bean
     public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
+        // return new MemoryMemberRepository();
+        return new JdbcMemberRepository(dataSource);
     }
     
     // 참고
