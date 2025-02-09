@@ -1,6 +1,7 @@
 package Hello.hello.spring;
 
 import Hello.hello.spring.repository.JdbcMemberRepository;
+import Hello.hello.spring.repository.JdbcTemplateMemberRepository;
 import Hello.hello.spring.repository.MemberRepository;
 import Hello.hello.spring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,8 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository() {
         // return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+        // return new JdbcMemberRepository(dataSource);
+        return new JdbcTemplateMemberRepository(dataSource);
     }
     
     // 참고
