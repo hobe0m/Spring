@@ -4,12 +4,14 @@ import Hello.hello.spring.domain.Member;
 import Hello.hello.spring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 // Ctrl + shift + T : 테스트 클래스 생성
 
+@Transactional
 public class MemberService {
 
     // 서비스 클래스는 비즈니스에 가까운 용어를 사용해야 한다.
