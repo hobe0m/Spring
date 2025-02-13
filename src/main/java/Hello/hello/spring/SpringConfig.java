@@ -1,9 +1,10 @@
 package Hello.hello.spring;
 
-import Hello.hello.spring.repository.JdbcMemberRepository;
+import Hello.hello.spring.repository.*;
 import Hello.hello.spring.repository.JdbcTemplateMemberRepository;
 import Hello.hello.spring.repository.MemberRepository;
 import Hello.hello.spring.service.MemberService;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,11 +20,13 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
-    private DataSource dataSource;
+    private final DataSource dataSource;
+    private final EntityManager em;
 
     @Autowired
-    public SpringConfig(DataSource dataSource) {
+    public SpringConfig(DataSource dataSource, EntityManager em) {
         this.dataSource = dataSource;
+        this.em = em;
     }
 
     // 이 때 MemberService의 매개변수는 빈으로 등록된 Repository를 사용해야 하므로, memberRepository()를 매개변수에 넣어준다.
@@ -36,7 +39,8 @@ public class SpringConfig {
     public MemberRepository memberRepository() {
         // return new MemoryMemberRepository();
         // return new JdbcMemberRepository(dataSource);
-        return new JdbcTemplateMemberRepository(dataSource);
+        // return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(em);
     }
     
     // 참고
