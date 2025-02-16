@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,13 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @Transactional // 테스트 후 RollBack 실행
 class MemberServiceIntegrationTest {
     @Autowired MemberService memberService; // 테스트니까 바로 필드 기반으로 주입해준다.
-    @Autowired MemberRepository MemberRepository;
+    @Autowired MemberRepository memberRepository;
 
 
     @Test
     void join() {
         Member member = new Member();
-        member.setName("user1");
+        member.setName("user2");
 
         Long saveId = memberService.join(member);
 

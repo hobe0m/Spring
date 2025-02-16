@@ -19,13 +19,10 @@ import javax.sql.DataSource;
 // 컨트롤러는 보통 컴포넌트 스캔으로 컨테이너의 빈에 등록한다.
 @Configuration
 public class SpringConfig {
-
-    private final DataSource dataSource;
     private final EntityManager em;
 
     @Autowired
-    public SpringConfig(DataSource dataSource, EntityManager em) {
-        this.dataSource = dataSource;
+    public SpringConfig( EntityManager em) {
         this.em = em;
     }
 
@@ -41,6 +38,7 @@ public class SpringConfig {
         // return new JdbcMemberRepository(dataSource);
         // return new JdbcTemplateMemberRepository(dataSource);
         return new JpaMemberRepository(em);
+        // EntityManager가 필요하기 때문에 매개 변수에 넣어준다.
     }
     
     // 참고

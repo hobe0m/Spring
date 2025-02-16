@@ -12,6 +12,7 @@ import java.util.Optional;
 // Ctrl + shift + T : 테스트 클래스 생성
 
 @Transactional
+// JPA는 join(회원가입) 시 모든 데이터 변경이 Transaction 안에서 실행이 되어야 한다.
 public class MemberService {
 
     // 서비스 클래스는 비즈니스에 가까운 용어를 사용해야 한다.
