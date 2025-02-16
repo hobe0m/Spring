@@ -1,15 +1,10 @@
 package Hello.hello.spring;
 
-import Hello.hello.spring.repository.*;
-import Hello.hello.spring.repository.JdbcTemplateMemberRepository;
 import Hello.hello.spring.repository.MemberRepository;
 import Hello.hello.spring.service.MemberService;
-import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.sql.DataSource;
 
 // 자바 코드로 컴포넌트 등록하는 방법
 // SpringConfig 파일을 만들고, @Configuration 어노테이션을 붙여준다.
@@ -19,27 +14,27 @@ import javax.sql.DataSource;
 // 컨트롤러는 보통 컴포넌트 스캔으로 컨테이너의 빈에 등록한다.
 @Configuration
 public class SpringConfig {
-    private final EntityManager em;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig( EntityManager em) {
-        this.em = em;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     // 이 때 MemberService의 매개변수는 빈으로 등록된 Repository를 사용해야 하므로, memberRepository()를 매개변수에 넣어준다.
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
-    public MemberRepository memberRepository() {
+    // @Bean
+    // public MemberRepository memberRepository() {
         // return new MemoryMemberRepository();
         // return new JdbcMemberRepository(dataSource);
         // return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(em);
+        // return new JpaMemberRepository(em);
         // EntityManager가 필요하기 때문에 매개 변수에 넣어준다.
-    }
+    // }
     
     // 참고
     // 과거에는 xml로도 설정했지만 최근에는 잘 사용하지 않으므로 생략한다.
