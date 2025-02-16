@@ -1,5 +1,3 @@
-package Hello.hello.spring.controller;
-
 public class Explain {
     // 컴포넌트 스캔과 자동 의존 주입
 
