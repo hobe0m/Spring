@@ -1,5 +1,6 @@
 package Hello.hello.spring;
 
+import Hello.hello.spring.aop.TimeTraceAop;
 import Hello.hello.spring.repository.MemberRepository;
 import Hello.hello.spring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,12 @@ public class SpringConfig {
     public MemberService memberService() {
         return new MemberService(memberRepository);
     }
+
+    // 이런 식으로 직접 Bean으로 등록해줘도 되고, @Component를 붙여 Component Scan을 사용해도 된다.
+    // @Bean
+    // public TimeTraceAop timeTraceAop() {
+    //     return new TimeTraceAop();
+    // }
 
     // @Bean
     // public MemberRepository memberRepository() {

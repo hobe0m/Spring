@@ -41,24 +41,12 @@ public class MemberService {
         // Optional<Member> result = memberRepository.findByName(member.getName());
         // result는 이미 나왔으므로 바로 .ifPrensent와 연결시켜준다.
 
-        // 메서드의 시작 시간 체크
-        long start = System.currentTimeMillis();
-
-        try {
             // Ctrl + Alt + M : 메서드 추출
             // 만든 메서드를 추출해서 빼낸다.
             // 중복 회원 검증
             validateDuplicateMember(member);
             memberRepository.save(member);
             return member.getId();
-        } finally {
-            // 메서드의 끝나는 시간 체크
-            long finish = System.currentTimeMillis();
-
-            // 메서드가 작동되는데 걸리는 시간 체크
-            long timeMs = finish - start;
-            System.out.println("join = " + timeMs + "ms");
-        }
     }
 
     private void validateDuplicateMember(Member member) {
@@ -77,22 +65,7 @@ public class MemberService {
      * @return
      */
     public List<Member> findMembers() {
-        long start = System.currentTimeMillis();
-
-        try {
             return memberRepository.findAll();
-        } finally {
-            long finish = System.currentTimeMillis();
-            long timeMs = finish - start;
-            System.out.println("findMembers " + timeMs + "ms");
-        }
-
-        // 회원 가입 및 회원 조회의 시간을 측정하는 기능은 핵심 관심 사항이 아니다.
-        // 시간을 측정하는 로직은 공통 관심 사항이다.
-        // 시간을 측정하는 로직과 핵심 비즈니스의 로직이 섞여서 유지보수가 어렵다.
-        // 시간을 측정하는 로직을 별도의 공통 로직으로 만들기 매우 어렵다.
-        // 시간을 측정하는 로직을 변경할 때 모든 로직을 찾아가면서 변경해야 한다.
-
     }
 
     public Optional<Member> findOne(Long memberId) {
