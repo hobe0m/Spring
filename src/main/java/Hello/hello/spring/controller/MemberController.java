@@ -44,6 +44,7 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
+        System.out.println("memberService = " + memberService.getClass());
     }
 
     // @GetMapping은 URL을 직접 치고 들어온다고 생각하면 된다.

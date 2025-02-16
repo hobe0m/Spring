@@ -32,4 +32,6 @@ public class TimeTraceAop {
     // 프록시라는 가짜 스프링 빈을 만들어 놓고, 가짜 스프링 빈이 끝나면 실제 스프링 빈을 호출한다.
     // 즉, controller - 가짜 스프링 bean(service) - 진짜 스프링 bean(service)로 연결
     // 이 때, joinPoint.proceed()가 사용된다.
+
+    // 콘솔에 출력해서 확인할 수 있다.
 }
