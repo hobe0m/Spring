@@ -27,4 +27,9 @@ public class TimeTraceAop {
     // 핵심 관심 사항을 깔끔하게 유지보수 할 수 있다.
     // 변경이 필요하면 이 로직만 변경하면 된다.
     // 원하는 적용 대상을 선택할 수 있다.
+
+    // AOP 동작 방식
+    // 프록시라는 가짜 스프링 빈을 만들어 놓고, 가짜 스프링 빈이 끝나면 실제 스프링 빈을 호출한다.
+    // 즉, controller - 가짜 스프링 bean(service) - 진짜 스프링 bean(service)로 연결
+    // 이 때, joinPoint.proceed()가 사용된다.
 }
