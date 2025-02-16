@@ -34,4 +34,5 @@ public class TimeTraceAop {
     // 이 때, joinPoint.proceed()가 사용된다.
 
     // 콘솔에 출력해서 확인할 수 있다.
+    // 이런 방식을 프록시 타입의 AOP라고 한다.
 }
